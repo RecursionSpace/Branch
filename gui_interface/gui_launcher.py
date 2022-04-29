@@ -45,7 +45,7 @@ for F in (select_network.WiFiGUI,):
     frame.grid(row=0, column=0, sticky="nsew")
 
 print(frames)
-show_frame(select_network.WiFiGUI(init_window))
+show_frame(select_network.WiFiGUI)
 
 # user_interface = select_network.WiFiGUI(init_window)
 
