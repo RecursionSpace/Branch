@@ -43,7 +43,7 @@ Create a desktop file under `/usr/share/xsessions`
 ```[Desktop Entry]
 Name=Branch GUI
 Comment=Start application on boot
-Exec=/home/jmerrell/py_launcher.command
+Exec=/opt/Branch/gui_interface/gui.sh
 Type=Application
 ```
 Edit `/etc/lightdm/lightdm.conf`
