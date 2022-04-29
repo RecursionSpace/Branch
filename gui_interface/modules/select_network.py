@@ -16,12 +16,13 @@ if os.environ.get('DISPLAY', '') == '':
 #os.environ['DISPLAY'] = ':0'
 
 
-class WiFiGUI():
+class WiFiGUI(ttk.Frame):
     '''
     Creates the interface for the user to enter the WiFi network name and password.
     '''
 
     def __init__(self, init_window_name):
+        ttk.Frame.__init__(self, init_window_name)
         self.init_window_name = init_window_name
 
         self.get_wifi_value = StringVar()  # SSID Field
