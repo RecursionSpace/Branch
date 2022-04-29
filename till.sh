@@ -41,8 +41,5 @@ sudo usermod -aG sudo branch
 sudo systemctl enable branch.service
 
 
-sudo nano ~/.xinitrc
-
-
 # https://askubuntu.com/questions/193130/what-is-the-most-basic-window-manager-for-ubuntu-that-can-be-used-to-display-a-s
 sudo apt-get install ratpoison -y
