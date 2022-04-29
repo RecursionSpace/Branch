@@ -35,7 +35,7 @@ container.grid_columnconfigure(0, weight=1)
 
 frames = {}
 
-for F in (select_network.WiFiGUI(init_window),):
+for F in (select_network.WiFiGUI,):
     frame = F(container)
     frames[F] = frame
 
