@@ -43,9 +43,9 @@ for F in (select_network.WiFiGUI,):
 
 show_frame(select_network.WiFiGUI(init_window))
 
-user_interface = select_network.WiFiGUI(init_window)
+# user_interface = select_network.WiFiGUI(init_window)
 
-user_interface.set_init_window()
-user_interface.scans_wifi_list()  # Scan for networks before starting
+# user_interface.set_init_window()
+# user_interface.scans_wifi_list()  # Scan for networks before starting
 
 init_window.mainloop()
