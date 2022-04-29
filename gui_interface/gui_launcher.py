@@ -5,18 +5,6 @@ from ttkthemes import ThemedTk
 
 from modules import select_network
 
-# class GuiLauncher(ttk.Frame):
-#     def __init__(self, *args, **kwargs):
-#         ttk.Frame.__init__(self, *args, **kwargs)
-#         p1 = Page1(self)
-#         p2 = Page2(self)
-#         p3 = Page3(self)
-
-#         buttonframe = ttk.Frame(self)
-#         container = ttk.Frame(self)
-#         buttonframe.pack(side="top", fill="x", expand=False)
-#         container.pack(side="top", fill="both", expand=True)
-
 
 def show_frame(cont):
     '''
@@ -50,7 +38,6 @@ for F in (select_network.WiFiGUI,):
 
     frame.grid(row=0, column=0, sticky="nsew")
 
-print(frames)
 show_frame(select_network.WiFiGUI)
 
 # user_interface = select_network.WiFiGUI(init_window)
