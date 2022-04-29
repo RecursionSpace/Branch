@@ -39,12 +39,13 @@ container.grid_columnconfigure(0, weight=1)
 frames = {}
 
 for F in (select_network.WiFiGUI,):
-    frame = F(container, init_window)
+    frame = F(container)
     frames[F] = frame
 
     frame.grid(row=0, column=0, sticky="nsew")
 
-show_frame(select_network.WiFiGUI(init_window))
+show_frame(0)
+# show_frame(select_network.WiFiGUI(init_window))
 
 # user_interface = select_network.WiFiGUI(init_window)
 
