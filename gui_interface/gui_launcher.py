@@ -19,8 +19,11 @@ from modules import select_network
 
 
 def show_frame(cont):
-    frame = frames[cont]
-    frame.tkraise()
+    '''
+    Shows the selected frame
+    '''
+    selected_frame = frames[cont]
+    selected_frame.tkraise()
 
 
 init_window = ThemedTk(theme="equilux")
@@ -36,7 +39,7 @@ container.grid_columnconfigure(0, weight=1)
 frames = {}
 
 for F in (select_network.WiFiGUI,):
-    frame = F(container)
+    frame = F(container, init_window)
     frames[F] = frame
 
     frame.grid(row=0, column=0, sticky="nsew")
