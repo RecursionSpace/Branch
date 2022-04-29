@@ -12,10 +12,10 @@ from ttkthemes import ThemedTk
 import pywifi
 from pywifi import const
 
-# if os.environ.get('DISPLAY', '') == '':
-#   os.environ.__setitem__('DISPLAY', ':0.0')
+if os.environ.get('DISPLAY', '') == '':
+    os.environ.__setitem__('DISPLAY', ':0.0')
 
-os.environ['DISPLAY'] = ':0'
+#os.environ['DISPLAY'] = ':0'
 
 
 class WiFiGUI():
@@ -26,16 +26,14 @@ class WiFiGUI():
     def __init__(self, init_window_name):
         self.init_window_name = init_window_name
 
-        # Get cracked wifi account
-        self.get_wifi_value = StringVar()
-
-        # get wifi password
-        self.get_wifi_password_value = StringVar()
+        self.get_wifi_value = StringVar()  # SSID Field
+        self.get_wifi_password_value = StringVar()  # Password Field
 
         self.wifi = pywifi.PyWiFi()  # Grab the NIC interface
         self.iface = self.wifi.interfaces()[0]  # Grab the first wireless card
         self.iface.disconnect()  # test link break all links
         time.sleep(1)  # sleep for 1 second
+
         # Test whether the network card is in a disconnected state
         assert self.iface.status() in\
             [const.IFACE_DISCONNECTED, const.IFACE_INACTIVE]
@@ -43,18 +41,17 @@ class WiFiGUI():
     def __str__(self):
         return f'(WIFI: {self.wifi},{self.iface.name()})'
 
-    # Settings window
     def set_init_window(self):
         '''
         Main window
         '''
         self.init_window_name.title("WiFi Selection")
+
         width = self.init_window_name.winfo_screenwidth()
         height = self.init_window_name.winfo_screenheight()
-        # self.init_window_name.geometry('+500+200')
         self.init_window_name.geometry(f"{width}x{height}")
 
-        wifi_labelframe = LabelFrame(text="Available Networks")
+        wifi_labelframe = ttk.LabelFrame(text="Available Networks")
         wifi_labelframe.grid(
             column=0, row=0, sticky=NSEW, padx=10, pady=5)
         # wifi_labelframe.place(relx=0.5, rely=0.5, anchor=CENTER)
@@ -157,23 +154,3 @@ class WiFiGUI():
             f"nmcli device wifi connect '{wifi_ssid}' password {pwd_Str}")
 
         return bool(self.iface.status() == const.IFACE_CONNECTED)
-
-
-# def gui_start():
-#     '''
-#     Launch the GUI
-#     '''
-#     init_window = ThemedTk(theme="equilux")
-#     init_window.attributes("-fullscreen", True)
-#     user_interface = WiFiGUI(init_window)
-
-#     user_interface.set_init_window()
-#     user_interface.scans_wifi_list()  # Scan for networks before starting
-
-#     exit_button = Button(init_window, text="Exit", command=init_window.destroy)
-#     exit_button.pack(pady=20)
-
-#     init_window.mainloop()
-
-
-# gui_start()
