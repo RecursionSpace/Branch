@@ -4,10 +4,8 @@ import os
 import time
 
 from tkinter import (
-    StringVar, LabelFrame, Label, Entry, Button, W,
-    NSEW, VERTICAL, NS, ttk, CENTER
+    StringVar, W, NSEW, VERTICAL, NS, ttk, CENTER
 )
-from ttkthemes import ThemedTk
 
 import pywifi
 from pywifi import const
@@ -51,6 +49,7 @@ class WiFiGUI():
         height = self.init_window_name.winfo_screenheight()
         self.init_window_name.geometry(f"{width}x{height}")
 
+        # ----------------------------- List of Networks ----------------------------- #
         wifi_labelframe = ttk.LabelFrame(text="Available Networks")
         wifi_labelframe.grid(
             column=0, row=0, sticky=NSEW, padx=10, pady=5)
@@ -76,26 +75,27 @@ class WiFiGUI():
         self.wifi_tree.bind("<Double-1>", self.on_db_click)
         self.vbar.grid(row=4, column=1, sticky=NS)
 
-        labelframe = LabelFrame(width=400, height=200, text="Connect ")
+        # ------------------------ Connect to Selected Network ----------------------- #
+        labelframe = ttk.LabelFrame(width=400, height=200, text="Connect ")
         labelframe.grid(column=0, row=3, padx=10, pady=5)
         # labelframe.place(relx=0.5, rely=0.5, anchor=CENTER)
 
-        Button(labelframe, text="Re-Scan WiFi Networks",
-               command=self.scans_wifi_list).grid(column=0, row=0)
+        ttk.Button(labelframe, text="Re-Scan WiFi Networks",
+                   command=self.scans_wifi_list).grid(column=0, row=0)
 
-        Label(labelframe, text="Network Name:").grid(column=0, row=1)
+        ttk.Label(labelframe, text="Network Name:").grid(column=0, row=1)
 
-        Entry(labelframe, width=12, textvariable=self.get_wifi_value).grid(
+        ttk.Entry(labelframe, width=12, textvariable=self.get_wifi_value).grid(
             column=1, row=1)
 
-        Label(
+        ttk.Label(
             labelframe, text="WiFi Password:").grid(column=2, row=1)
 
-        Entry(labelframe, width=10, textvariable=self.get_wifi_password_value).grid(
+        ttk.Entry(labelframe, width=10, textvariable=self.get_wifi_password_value).grid(
             column=3, row=1, sticky=W)
 
-        Button(labelframe, text="Connect",
-               command=self.connect).grid(column=0, row=2)
+        ttk.Button(labelframe, text="Connect",
+                   command=self.connect).grid(column=0, row=2)
 
     def scans_wifi_list(self):
         '''
@@ -103,7 +103,7 @@ class WiFiGUI():
         '''
         print("Start scanning for nearby wifi networks...")
         self.iface.scan()
-        # time.sleep(5)
+        time.sleep(1)
         scanres = self.iface.scan_results()
 
         print(f"Quantity: {len(scanres)}")
@@ -116,18 +116,15 @@ class WiFiGUI():
         show wifi list
         '''
         for index, wifi_info in enumerate(scans_res):
-            # print("%-*s| %s | %*s |%*s\n"%(20,index,wifi_info.ssid,wifi_info.bssid,,wifi_info.signal))
             self.wifi_tree.insert("", 'end', values=(
                 index + 1, wifi_info.ssid, wifi_info.signal))
-            # print("| %s | %s | %s | %s \n"%(index,wifi_info.ssid,wifi_info.bssid,wifi_info.signal))
 
     def on_db_click(self, event):
         '''
-        Treeview binding events
+        Treeview binding events. Updates network name to the selected network.
         '''
         self.sels = event.widget.selection()
         self.get_wifi_value.set(self.wifi_tree.item(self.sels, "values")[1])
-        # print("you clicked on",self.wifi_tree.item(self.sels,"values")[1])
 
     def connect(self):
         '''

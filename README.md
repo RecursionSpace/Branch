@@ -40,12 +40,14 @@ A new user is created that will auto login using lightdm
 
 Create a desktop file under `/usr/share/xsessions`
 
-```[Desktop Entry]
+```
+[Desktop Entry]
 Name=Branch GUI
 Comment=Start application on boot
 Exec=/opt/Branch/gui_interface/gui.sh
 Type=Application
 ```
+
 Edit `/etc/lightdm/lightdm.conf`
 
 ```
