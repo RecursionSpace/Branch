@@ -46,9 +46,9 @@ class WiFiGUI(ttk.Frame):
         '''
         self.init_window_name.title("WiFi Selection")
 
-        width = self.init_window_name.winfo_screenwidth()
-        height = self.init_window_name.winfo_screenheight()
-        self.init_window_name.geometry(f"{width}x{height}")
+        # width = self.init_window_name.winfo_screenwidth()
+        # height = self.init_window_name.winfo_screenheight()
+        # self.init_window_name.geometry(f"{width}x{height}")
 
         # ----------------------------- List of Networks ----------------------------- #
         wifi_labelframe = ttk.LabelFrame(text="Available Networks")

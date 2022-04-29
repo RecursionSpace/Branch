@@ -29,6 +29,10 @@ def show_frame(cont):
 init_window = ThemedTk(theme="equilux")
 init_window.attributes("-fullscreen", True)
 
+width = init_window.winfo_screenwidth()
+height = init_window.winfo_screenheight()
+init_window.geometry(f"{width}x{height}")
+
 # creating a container
 container = ttk.Frame(init_window)
 container.pack(side="top", fill="both", expand=True)
