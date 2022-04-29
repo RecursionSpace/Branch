@@ -15,7 +15,7 @@ During installation system packages are installed.
 
 ``` BASH
 cd /opt/
-git clone git@github.com:RecursionSpace/Branch.git
+git clone https://github.com/RecursionSpace/Branch.git
 ./till.sh
 ```
 
@@ -30,3 +30,27 @@ If supported, the device enters AP mode and broadcasts a network that the user c
 ### GUI Wizard
 
 If a display is detected, the device will enter a GUI wizard that will guide the user through the process of connecting the device to the network.
+
+https://superuser.com/questions/610084/putty-x11-proxy-wrong-authorisation-protocol-attempted
+
+
+## process
+
+A new user is created that will auto login using lightdm
+
+Create a desktop file under `/usr/share/xsessions`
+
+```[Desktop Entry]
+Name=Branch GUI
+Comment=Start application on boot
+Exec=/home/jmerrell/py_launcher.command
+Type=Application
+```
+Edit `/etc/lightdm/lightdm.conf`
+
+```
+[SeatDefaults]
+autologin-user=jmerrell
+autologin-user-timeout=0
+user-session=branch
+```

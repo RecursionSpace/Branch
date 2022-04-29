@@ -1,0 +1,179 @@
+''' Interface that displays available networks '''
+
+import os
+import time
+
+from tkinter import (
+    StringVar, LabelFrame, Label, Entry, Button, W,
+    NSEW, VERTICAL, NS, ttk, CENTER
+)
+from ttkthemes import ThemedTk
+
+import pywifi
+from pywifi import const
+
+# if os.environ.get('DISPLAY', '') == '':
+#   os.environ.__setitem__('DISPLAY', ':0.0')
+
+os.environ['DISPLAY'] = ':0'
+
+
+class WiFiGUI():
+    '''
+    Creates the interface for the user to enter the WiFi network name and password.
+    '''
+
+    def __init__(self, init_window_name):
+        self.init_window_name = init_window_name
+
+        # Get cracked wifi account
+        self.get_wifi_value = StringVar()
+
+        # get wifi password
+        self.get_wifi_password_value = StringVar()
+
+        self.wifi = pywifi.PyWiFi()  # Grab the NIC interface
+        self.iface = self.wifi.interfaces()[0]  # Grab the first wireless card
+        self.iface.disconnect()  # test link break all links
+        time.sleep(1)  # sleep for 1 second
+        # Test whether the network card is in a disconnected state
+        assert self.iface.status() in\
+            [const.IFACE_DISCONNECTED, const.IFACE_INACTIVE]
+
+    def __str__(self):
+        return f'(WIFI: {self.wifi},{self.iface.name()})'
+
+    # Settings window
+    def set_init_window(self):
+        '''
+        Main window
+        '''
+        self.init_window_name.title("WiFi Selection")
+        width = self.init_window_name.winfo_screenwidth()
+        height = self.init_window_name.winfo_screenheight()
+        # self.init_window_name.geometry('+500+200')
+        self.init_window_name.geometry(f"{width}x{height}")
+
+        wifi_labelframe = LabelFrame(text="Available Networks")
+        wifi_labelframe.grid(
+            column=0, row=0, sticky=NSEW, padx=10, pady=5)
+        # wifi_labelframe.place(relx=0.5, rely=0.5, anchor=CENTER)
+
+        # Define tree structure and scroll bars
+        self.wifi_tree = ttk.Treeview(
+            wifi_labelframe, show="headings", columns=("a", "b", "d"))
+        self.vbar = ttk.Scrollbar(wifi_labelframe,
+                                  orient=VERTICAL, command=self.wifi_tree.yview)
+        self.wifi_tree.configure(yscrollcommand=self.vbar.set)
+
+        # Define tree structure and scroll bars
+        self.wifi_tree.column("a", width=50, anchor="center")
+        self.wifi_tree.column("b", width=100, anchor="center")
+        self.wifi_tree.column("d", width=100, anchor="center")
+
+        self.wifi_tree.heading("a", text="WiFi ID")
+        self.wifi_tree.heading("b", text="SSID")
+        self.wifi_tree.heading("d", text="Signal Strength")
+
+        self.wifi_tree.grid(row=4, column=0, sticky=NSEW)
+        self.wifi_tree.bind("<Double-1>", self.on_db_click)
+        self.vbar.grid(row=4, column=1, sticky=NS)
+
+        labelframe = LabelFrame(width=400, height=200, text="Connect ")
+        labelframe.grid(column=0, row=3, padx=10, pady=5)
+        # labelframe.place(relx=0.5, rely=0.5, anchor=CENTER)
+
+        Button(labelframe, text="Re-Scan WiFi Networks",
+               command=self.scans_wifi_list).grid(column=0, row=0)
+
+        Label(labelframe, text="Network Name:").grid(column=0, row=1)
+
+        Entry(labelframe, width=12, textvariable=self.get_wifi_value).grid(
+            column=1, row=1)
+
+        Label(
+            labelframe, text="WiFi Password:").grid(column=2, row=1)
+
+        Entry(labelframe, width=10, textvariable=self.get_wifi_password_value).grid(
+            column=3, row=1, sticky=W)
+
+        Button(labelframe, text="Connect",
+               command=self.connect).grid(column=0, row=2)
+
+    def scans_wifi_list(self):
+        '''
+        Scan the surrounding wifi list
+        '''
+        print("Start scanning for nearby wifi networks...")
+        self.iface.scan()
+        # time.sleep(5)
+        scanres = self.iface.scan_results()
+
+        print(f"Quantity: {len(scanres)}")
+
+        self.show_scans_wifi_list(scanres)
+        return scanres
+
+    def show_scans_wifi_list(self, scans_res):
+        '''
+        show wifi list
+        '''
+        for index, wifi_info in enumerate(scans_res):
+            # print("%-*s| %s | %*s |%*s\n"%(20,index,wifi_info.ssid,wifi_info.bssid,,wifi_info.signal))
+            self.wifi_tree.insert("", 'end', values=(
+                index + 1, wifi_info.ssid, wifi_info.signal))
+            # print("| %s | %s | %s | %s \n"%(index,wifi_info.ssid,wifi_info.bssid,wifi_info.signal))
+
+    def on_db_click(self, event):
+        '''
+        Treeview binding events
+        '''
+        self.sels = event.widget.selection()
+        self.get_wifi_value.set(self.wifi_tree.item(self.sels, "values")[1])
+        # print("you clicked on",self.wifi_tree.item(self.sels,"values")[1])
+
+    def connect(self):
+        '''
+        Connect to the wifi network
+        '''
+        wifi_ssid = str(self.get_wifi_value.get())
+        pwd_Str = str(self.get_wifi_password_value.get())
+
+        print(f"Connecting to {wifi_ssid} with password {pwd_Str}")
+
+        self.profile = pywifi.Profile()
+        self.profile.ssid = wifi_ssid  # wifi name
+        self.profile.auth = const.AUTH_ALG_OPEN  # network card opening
+        self.profile.akm.append(const.AKM_TYPE_WPA2PSK)  # wifi encryption
+        self.profile.cipher = const.CIPHER_TYPE_CCMP  # encryption unit
+        self.profile.key = pwd_Str  # password
+        self.iface.remove_all_network_profiles()  # delete all wifi files
+        self.tmp_profile = self.iface.add_network_profile(self.profile)
+        self.iface.connect(self.tmp_profile)  # Link
+        time.sleep(5)
+
+        # Working method to connect
+        os.system(
+            f"nmcli device wifi connect '{wifi_ssid}' password {pwd_Str}")
+
+        return bool(self.iface.status() == const.IFACE_CONNECTED)
+
+
+# def gui_start():
+#     '''
+#     Launch the GUI
+#     '''
+#     init_window = ThemedTk(theme="equilux")
+#     init_window.attributes("-fullscreen", True)
+#     user_interface = WiFiGUI(init_window)
+
+#     user_interface.set_init_window()
+#     user_interface.scans_wifi_list()  # Scan for networks before starting
+
+#     exit_button = Button(init_window, text="Exit", command=init_window.destroy)
+#     exit_button.pack(pady=20)
+
+#     init_window.mainloop()
+
+
+# gui_start()
