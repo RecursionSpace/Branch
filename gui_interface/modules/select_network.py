@@ -44,7 +44,7 @@ class WiFiGUI(ttk.Frame):
         '''
         Main window
         '''
-        self.init_window_name.title("WiFi Selection")
+        # self.init_window_name.title("WiFi Selection")
 
         # width = self.init_window_name.winfo_screenwidth()
         # height = self.init_window_name.winfo_screenheight()

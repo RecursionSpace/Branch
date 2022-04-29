@@ -29,16 +29,18 @@ def show_frame(cont):
 init_window = ThemedTk(theme="equilux")
 init_window.attributes("-fullscreen", True)
 
+init_window.title("WiFi Selection")
+
 width = init_window.winfo_screenwidth()
 height = init_window.winfo_screenheight()
 init_window.geometry(f"{width}x{height}")
 
 # creating a container
 container = ttk.Frame(init_window)
-container.pack(side="top", fill="both", expand=True)
+# container.pack(side="top", fill="both", expand=True)
 
-container.grid_rowconfigure(0, weight=1)
-container.grid_columnconfigure(0, weight=1)
+# container.grid_rowconfigure(0, weight=1)
+# container.grid_columnconfigure(0, weight=1)
 
 frames = {}
 
