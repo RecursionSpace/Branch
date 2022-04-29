@@ -37,6 +37,8 @@ class WiFiGUI(ttk.Frame):
         assert self.iface.status() in\
             [const.IFACE_DISCONNECTED, const.IFACE_INACTIVE]
 
+        self.set_init_window()
+
     def __str__(self):
         return f'(WIFI: {self.wifi},{self.iface.name()})'
 

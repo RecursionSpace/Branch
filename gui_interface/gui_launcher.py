@@ -37,10 +37,10 @@ init_window.geometry(f"{width}x{height}")
 
 # creating a container
 container = ttk.Frame(init_window)
-# container.pack(side="top", fill="both", expand=True)
+container.pack(side="top", fill="both", expand=True)
 
-# container.grid_rowconfigure(0, weight=1)
-# container.grid_columnconfigure(0, weight=1)
+container.grid_rowconfigure(0, weight=1)
+container.grid_columnconfigure(0, weight=1)
 
 frames = {}
 
