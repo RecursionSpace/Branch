@@ -21,7 +21,7 @@ class WiFiGUI(ttk.Frame):
     Creates the interface for the user to enter the WiFi network name and password.
     '''
 
-    def __init__(self, init_window_name):
+    def __init__(self, init_window_name, controller):
         ttk.Frame.__init__(self, init_window_name)
 
         self.get_wifi_value = StringVar()  # SSID Field
@@ -92,6 +92,10 @@ class WiFiGUI(ttk.Frame):
 
         ttk.Button(labelframe, text="Connect",
                    command=self.connect).grid(column=0, row=2)
+
+        button = tk.Button(self, text="Go to the end page",
+                           command=lambda: controller.show_frame("EndScreen"))
+        button.pack()
 
     def scans_wifi_list(self):
         '''

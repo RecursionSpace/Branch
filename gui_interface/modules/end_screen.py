@@ -6,7 +6,7 @@ from tkinter import ttk
 class EndScreen(ttk.Frame):
     '''Final Screen Elements'''
 
-    def __init__(self, main_window):
+    def __init__(self, main_window, controller):
         ttk.Frame.__init__(self, main_window)
         self.main_window = main_window
 

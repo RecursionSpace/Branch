@@ -31,7 +31,7 @@ class GUI(ThemedTk):
 
         for F in (select_network.WiFiGUI, end_screen.EndScreen):
             page_name = F.__name__
-            frame = F(container)
+            frame = F(container, self)
             self.frames[page_name] = frame
 
             frame.grid(row=0, column=0, sticky="nsew")
