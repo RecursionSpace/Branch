@@ -78,7 +78,10 @@ class WiFiGUI(ttk.Frame):
 
         # ------------------------ Connect to Selected Network ----------------------- #
         labelframe = ttk.LabelFrame(width=400, height=200, text="Connect ")
-        labelframe.grid(column=1, row=3, padx=10, pady=5)
+
+        # labelframe.grid(column=1, row=3, padx=10, pady=5)
+        labelframe.pack(fill="x", expand=True)
+
         # labelframe.place(relx=0.5, rely=0.5, anchor=CENTER)
 
         ttk.Button(labelframe, text="Re-Scan WiFi Networks",
