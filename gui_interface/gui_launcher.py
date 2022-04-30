@@ -30,12 +30,13 @@ class GUI(ThemedTk):
         self.frames = {}
 
         for F in (select_network.WiFiGUI, end_screen.EndScreen):
+            page_name = F.__name__
             frame = F(container)
-            self.frames[F] = frame
+            self.frames[page_name] = frame
 
             frame.grid(row=0, column=0, sticky="nsew")
 
-        self.show_frame(select_network.WiFiGUI)
+        self.show_frame("WiFiGUI")
 
     def show_frame(self, cont):
         '''
