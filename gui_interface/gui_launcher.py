@@ -19,7 +19,7 @@ class GUI(ThemedTk):
         height = self.winfo_screenheight()
         self.geometry(f"{width}x{height}")
 
-        container = ttk.Frame(init_window)
+        container = ttk.Frame(self)
 
         container.pack(side="top", fill="both", expand=True)
 
