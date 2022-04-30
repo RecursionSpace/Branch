@@ -23,7 +23,6 @@ class WiFiGUI(ttk.Frame):
 
     def __init__(self, init_window_name):
         ttk.Frame.__init__(self, init_window_name)
-        self.init_window_name = init_window_name
 
         self.get_wifi_value = StringVar()  # SSID Field
         self.get_wifi_password_value = StringVar()  # Password Field
@@ -47,18 +46,13 @@ class WiFiGUI(ttk.Frame):
         '''
         Main window
         '''
-        # self.init_window_name.title("WiFi Selection")
-
-        # width = self.init_window_name.winfo_screenwidth()
-        # height = self.init_window_name.winfo_screenheight()
-        # self.init_window_name.geometry(f"{width}x{height}")
 
         # ----------------------------- List of Networks ----------------------------- #
         wifi_labelframe = ttk.LabelFrame(text="Available Networks")
 
-        wifi_labelframe.grid(
-            column=1, row=0, sticky=NSEW, padx=10, pady=5)
-        # wifi_labelframe.pack(side="top", fill="x", expand=True)
+        # wifi_labelframe.grid(
+        #     column=1, row=0, sticky=NSEW, padx=10, pady=5)
+        wifi_labelframe.pack(side="top", fill="x", expand=True)
 
         # wifi_labelframe.place(relx=0.5, rely=0.5, anchor=CENTER)
 
