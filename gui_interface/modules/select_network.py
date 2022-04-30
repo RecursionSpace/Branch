@@ -93,8 +93,8 @@ class WiFiGUI(ttk.Frame):
         ttk.Button(labelframe, text="Connect",
                    command=self.connect).grid(column=0, row=2)
 
-        button = tk.Button(self, text="Go to the end page",
-                           command=lambda: controller.show_frame("EndScreen"))
+        button = ttk.Button(self, text="Go to the end page",
+                            command=lambda: controller.show_frame("EndScreen"))
         button.pack()
 
     def scans_wifi_list(self):
