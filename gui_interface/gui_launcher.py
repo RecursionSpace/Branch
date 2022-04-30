@@ -11,13 +11,14 @@ class GUI(ThemedTk):
 
     def __init__(self, *args, **kwargs):
         ThemedTk.__init__(self, *args, **kwargs)
+
         self.title("WiFi Selection")
         self.attributes("-fullscreen", True)
         self.set_theme("equilux")
 
-        width = self.winfo_screenwidth()
-        height = self.winfo_screenheight()
-        self.geometry(f"{width}x{height}")
+        # width = self.winfo_screenwidth()
+        # height = self.winfo_screenheight()
+        # self.geometry(f"{width}x{height}")
 
         container = ttk.Frame(self)
 
