@@ -39,7 +39,7 @@ class WiFiGUI(ttk.Frame):
         self.scans_wifi_list()
 
         # ----------------------------- List of Networks ----------------------------- #
-        wifi_labelframe = ttk.LabelFrame(text="Available Networks")
+        wifi_labelframe = ttk.LabelFrame(self, text="Available Networks")
 
         # wifi_labelframe.grid(
         #     column=1, row=0, sticky=NSEW, padx=10, pady=5)
@@ -68,7 +68,8 @@ class WiFiGUI(ttk.Frame):
         self.vbar.grid(row=4, column=1, sticky=NS)
 
         # ------------------------ Connect to Selected Network ----------------------- #
-        labelframe = ttk.LabelFrame(width=400, height=200, text="Connect ")
+        labelframe = ttk.LabelFrame(
+            self, width=400, height=200, text="Connect ")
 
         # labelframe.grid(column=1, row=3, padx=10, pady=5)
         labelframe.pack(fill="x", expand=True)
