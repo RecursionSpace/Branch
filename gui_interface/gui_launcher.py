@@ -34,7 +34,7 @@ class GUI(ThemedTk):
 
             frame.grid(row=0, column=0, sticky="nsew")
 
-        self.show_frame(end_screen.EndScreen)
+        self.show_frame(select_network.WiFiGUI)
 
     def show_frame(self, cont):
         '''
