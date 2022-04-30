@@ -11,4 +11,4 @@ class EndScreen(ttk.Frame):
         self.main_window = main_window
 
         label = ttk.Label(text="Page 2")
-        label.grid(row=0, column=0, padx=10, pady=10)
+        label.pack(side="top", fill="x", expand=True)
