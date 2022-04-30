@@ -6,13 +6,14 @@ from ttkthemes import ThemedTk
 from modules import select_network, end_screen
 
 
-class GUI(ThemedTk(theme="equilux")):
+class GUI(ThemedTk):
     '''Initializes the GUI'''
 
     def __init__(self, *args, **kwargs):
         ThemedTk.__init__(self, *args, **kwargs)
         self.title("WiFi Selection")
         self.attributes("-fullscreen", True)
+        self.set_theme("equilux")
 
         width = self.winfo_screenwidth()
         height = self.winfo_screenheight()
@@ -35,7 +36,7 @@ class GUI(ThemedTk(theme="equilux")):
 
         self.show_frame(end_screen.EndScreen)
 
-    def show_frame(cont):
+    def show_frame(self, cont):
         '''
         Shows the selected frame
         '''
