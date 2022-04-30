@@ -36,16 +36,7 @@ class WiFiGUI(ttk.Frame):
         assert self.iface.status() in\
             [const.IFACE_DISCONNECTED, const.IFACE_INACTIVE]
 
-        self.set_init_window()
         self.scans_wifi_list()
-
-    def __str__(self):
-        return f'(WIFI: {self.wifi},{self.iface.name()})'
-
-    def set_init_window(self):
-        '''
-        Main window
-        '''
 
         # ----------------------------- List of Networks ----------------------------- #
         wifi_labelframe = ttk.LabelFrame(text="Available Networks")
