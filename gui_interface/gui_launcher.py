@@ -15,9 +15,9 @@ class GUI(ThemedTk):
         self.attributes("-fullscreen", True)
         self.set_theme("equilux")
 
-        width = self.winfo_screenwidth()
-        height = self.winfo_screenheight()
-        self.geometry(f"{width}x{height}")
+        # width = self.winfo_screenwidth()
+        # height = self.winfo_screenheight()
+        # self.geometry(f"{width}x{height}")
 
         container = ttk.Frame(self)
 
@@ -40,7 +40,7 @@ class GUI(ThemedTk):
         '''
         Shows the selected frame
         '''
-        selected_frame = frames[cont]
+        selected_frame = self.frames[cont]
         selected_frame.tkraise()
 
 

@@ -55,8 +55,11 @@ class WiFiGUI(ttk.Frame):
 
         # ----------------------------- List of Networks ----------------------------- #
         wifi_labelframe = ttk.LabelFrame(text="Available Networks")
+
         wifi_labelframe.grid(
             column=1, row=0, sticky=NSEW, padx=10, pady=5)
+        # wifi_labelframe.pack(side="top", fill="x", expand=True)
+
         # wifi_labelframe.place(relx=0.5, rely=0.5, anchor=CENTER)
 
         # Define tree structure and scroll bars
