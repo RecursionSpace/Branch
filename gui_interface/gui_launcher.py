@@ -3,7 +3,7 @@
 from tkinter import ttk
 from ttkthemes import ThemedTk
 
-from modules import select_network
+from modules import select_network, end_screen
 
 
 def show_frame(cont):
@@ -32,13 +32,14 @@ container.grid_columnconfigure(0, weight=1)
 
 frames = {}
 
-for F in (select_network.WiFiGUI,):
+for F in (select_network.WiFiGUI, end_screen.EndScreen):
     frame = F(container)
     frames[F] = frame
 
     frame.grid(row=0, column=0, sticky="nsew")
 
-show_frame(select_network.WiFiGUI)
+# show_frame(select_network.WiFiGUI)
+show_frame(end_screen.EndScreen)
 
 # user_interface = select_network.WiFiGUI(init_window)
 
