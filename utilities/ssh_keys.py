@@ -27,8 +27,10 @@ def new_deploy_key():
         ['touch', f'/home/{os.environ["USER"]}/.ssh/id_rsa.pub'], shell=True)
     subprocess.call(['ssh-keygen', '-t', 'ed25519', '-C',
                     f'{os.environ["USER"]}', '-f', f'/home/{os.environ["USER"]}/.ssh/id_rsa', '-q', '-N', '""'])
-    subprocess.call(['chmod', '600', '~/.ssh/id_rsa'])
-    subprocess.call(['chmod', '644', '~/.ssh/id_rsa.pub'])
+    subprocess.call(
+        ['chmod', '600', f'/home/{os.environ["USER"]}/.ssh/id_rsa'])
+    subprocess.call(
+        ['chmod', '644', f'/home/{os.environ["USER"]}/.ssh/id_rsa.pub'])
 
     # Start the ssh-agent.
     # subprocess.call(['eval', '$(ssh-agent -s)'])
@@ -36,7 +38,7 @@ def new_deploy_key():
 
     # Add your SSH private key to the ssh-agent.
     # subprocess.call(['ssh-add', '~/.ssh/id_rsa'])
-    ssh_agent_setup.add_key('~/.ssh/id_rsa')
+    ssh_agent_setup.add_key(f'/home/{os.environ["USER"]}/.ssh/id_rsa')
 
 
 new_deploy_key()
