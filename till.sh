@@ -22,6 +22,9 @@ yes '' | sudo add-apt-repository ppa:deadsnakes/ppa
 sudo apt-get --reinstall install python3.10 -y
 sudo apt-get install python3-pip -y
 
+sudo pip install ssh-agent-setup
+
+
 # ----------------------- Install Dysplay Requirements ----------------------- #
 sudo apt-get install -y x11-utils
 sudo apt-get install xauth xorg -y

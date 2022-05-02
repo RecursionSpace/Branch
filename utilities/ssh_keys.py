@@ -10,6 +10,8 @@ def new_deploy_key():
     import sys
     from pathlib import Path
 
+    import ssh_agent_setup
+
     # Check if the key pair already exists.
     if Path('/home/{}/.ssh/id_rsa.pub'.format(os.environ['USER'])).is_file():
         print('The key pair already exists. Please remove it before creating a new one.')
@@ -21,8 +23,13 @@ def new_deploy_key():
     subprocess.call(['chmod', '600', '~/.ssh/id_rsa'])
     subprocess.call(['chmod', '644', '~/.ssh/id_rsa.pub'])
 
+    # Start the ssh-agent.
+    # subprocess.call(['eval', '$(ssh-agent -s)'])
+    ssh_agent_setup.setup()
+
     # Add your SSH private key to the ssh-agent.
-    subprocess.call(['ssh-add', '~/.ssh/id_rsa'])
+    # subprocess.call(['ssh-add', '~/.ssh/id_rsa'])
+    ssh_agent_setup.add_key('~/.ssh/id_rsa')
 
 
 new_deploy_key()
