@@ -31,7 +31,8 @@ class EndScreen(ttk.Frame):
             )
             program_label.pack(ipadx=20, ipady=20)
         except KeyError as err:
-            print(err)
+            print(f"Could not open {err}")
+            self.controller.show_frame("InstallProgram")
 
     def refresh(self):
         '''Resets the frame'''
