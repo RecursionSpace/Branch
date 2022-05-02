@@ -38,7 +38,7 @@ https://superuser.com/questions/610084/putty-x11-proxy-wrong-authorisation-proto
 
 A new user is created that will auto login using lightdm
 
-Create a desktop file **branch.desktop** under `/usr/share/xsessions`
+Create a desktop file *branch.desktop* under `/usr/share/xsessions`
 
 ```BASH
 [Desktop Entry]
