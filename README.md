@@ -33,6 +33,19 @@ If a display is detected, the device will enter a GUI wizard that will guide the
 
 https://superuser.com/questions/610084/putty-x11-proxy-wrong-authorisation-protocol-attempted
 
+## Configuration
+
+Branch can be configured via the branch.json file in the root of the branch directory.
+
+```json
+{
+  "program": {
+    "url": "",
+    "branch": "",
+    "name": "",
+  },
+}
+```
 
 ## process
 

@@ -1,11 +1,16 @@
 ''' Graphic User Interface Launcher '''
 
+import json
+
 from tkinter import ttk
 from ttkthemes import ThemedTk
 
 from .modules import select_network, end_screen, install_program
 
 from utilities import network
+
+with open('branch.json', 'r', encoding="utf-8") as json_file:
+    branch_settings = json.load(json_file)
 
 
 class GUI(ThemedTk):
@@ -38,10 +43,13 @@ class GUI(ThemedTk):
 
             frame.grid(row=0, column=0, sticky="nsew")
 
-        if network.is_connected():
+        if not network.is_connected():
+            self.show_frame("WiFiGUI")
+
+        if not branch_settings['program_installed']:
             self.show_frame("InstallProgram")
         else:
-            self.show_frame("WiFiGUI")
+            self.show_frame("EndScreen")
 
     def show_frame(self, cont):
         '''
