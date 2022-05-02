@@ -46,8 +46,9 @@ class GUI(ThemedTk):
         if not network.is_connected():
             self.show_frame("WiFiGUI")
 
-        if not branch_settings['program_installed']:
+        elif network.is_connected() and not branch_settings['program_installed']:
             self.show_frame("InstallProgram")
+
         else:
             self.show_frame("EndScreen")
 
