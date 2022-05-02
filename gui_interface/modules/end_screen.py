@@ -31,3 +31,8 @@ class EndScreen(ttk.Frame):
             program_label.pack(ipadx=20, ipady=20)
         except KeyError as err:
             print(err)
+
+    def refresh(self):
+        '''Resets the frame'''
+        self.destroy()
+        self.__init__()

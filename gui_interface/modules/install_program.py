@@ -37,3 +37,8 @@ class InstallProgram(ttk.Frame):
         url = self.get_url_value.get()
         if fetch_program.clone(url):
             self.controller.show_frame("EndScreen")
+
+    def refresh(self):
+        '''Resets the frame'''
+        self.destroy()
+        self.__init__()

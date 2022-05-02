@@ -144,3 +144,8 @@ class WiFiGUI(ttk.Frame):
             f"nmcli device wifi connect '{wifi_ssid}' password {pwd_Str}")
 
         return bool(self.iface.status() == const.IFACE_CONNECTED)
+
+    def refresh(self):
+        '''Resets the frame'''
+        self.destroy()
+        self.__init__()
