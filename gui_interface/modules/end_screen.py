@@ -13,6 +13,7 @@ class EndScreen(ttk.Frame):
     def __init__(self, main_window, controller):
         ttk.Frame.__init__(self, main_window)
         self.main_window = main_window
+        self.controller = controller
 
         label = ttk.Label(
             self, text=f"IP: {network.get_addresses()}",
@@ -35,4 +36,4 @@ class EndScreen(ttk.Frame):
     def refresh(self):
         '''Resets the frame'''
         self.destroy()
-        self.__init__()
+        self.__init__(self.main_window, self.controller)
