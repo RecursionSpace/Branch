@@ -10,7 +10,7 @@ from .modules import select_network, end_screen, install_program
 from utilities import network
 
 with open('/opt/Branch/branch.json', 'r', encoding="utf-8") as json_file:
-    branch_settings = json.load(json_file)
+    branch_settings = json.loads(json_file)
 
 
 class GUI(ThemedTk):
