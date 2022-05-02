@@ -33,6 +33,13 @@ sudo apt-get install xserver-xorg xinit -y
 # https://raspberrypi.stackexchange.com/questions/57128/how-to-boot-into-own-python-script-gui-only
 sudo apt-get install nodm -y
 
+# ------------------------- Create Configuration File ------------------------ #
+sudo touch /opt/Branch/branch.json
+echo '{
+    "program_installed": false,
+}' > /opt/Branch/branch.json
+
+
 # -------------------------------- Setup User -------------------------------- #
 sudo adduser --disabled-password --gecos "" branch
 sudo usermod -aG sudo branch
