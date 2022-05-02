@@ -5,8 +5,8 @@ def is_connected():
     '''
     Check if the system is networked
     '''
-    # return bool(get_addresses() != '127.0.0.1')
-    return False
+    return bool(get_addresses() != '127.0.0.1')
+    # return False
 
 
 def get_addresses():
