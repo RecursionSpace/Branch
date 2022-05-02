@@ -21,9 +21,6 @@ def new_deploy_key():
     subprocess.call(['chmod', '600', '~/.ssh/id_rsa'])
     subprocess.call(['chmod', '644', '~/.ssh/id_rsa.pub'])
 
-    # Start the ssh-agent.
-    subprocess.call(['eval', '$(ssh-agent -s)'])
-
     # Add your SSH private key to the ssh-agent.
     subprocess.call(['ssh-add', '~/.ssh/id_rsa'])
 
