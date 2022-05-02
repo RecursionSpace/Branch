@@ -23,6 +23,8 @@ class WiFiGUI(ttk.Frame):
 
     def __init__(self, init_window_name, controller):
         ttk.Frame.__init__(self, init_window_name)
+        self.init_window_name = init_window_name
+        self.controller = controller
 
         self.get_wifi_value = StringVar()  # SSID Field
         self.get_wifi_password_value = StringVar()  # Password Field
@@ -148,4 +150,4 @@ class WiFiGUI(ttk.Frame):
     def refresh(self):
         '''Resets the frame'''
         self.destroy()
-        self.__init__()
+        self.__init__(self.init_window_name, self.controller)
