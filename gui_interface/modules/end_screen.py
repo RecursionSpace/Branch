@@ -15,11 +15,11 @@ class EndScreen(ttk.Frame):
         self.main_window = main_window
         self.controller = controller
 
-        label = ttk.Label(
+        self.label = ttk.Label(
             self, text=f"IP: {network.get_addresses()}",
             font=("Helvetica", 32)
         )
-        label.pack(ipadx=20, ipady=20)
+        self.label.pack(ipadx=20, ipady=20)
 
         try:
             with open('/opt/Branch/branch.json', 'r+', encoding="utf-8") as json_file:
@@ -36,6 +36,12 @@ class EndScreen(ttk.Frame):
 
     def refresh(self):
         '''Resets the frame'''
+        self.label = ttk.Label(
+            self, text=f"IP: {network.get_addresses()}",
+            font=("Helvetica", 32)
+        )
+        self.label.pack(ipadx=20, ipady=20)
+
         try:
             with open('/opt/Branch/branch.json', 'r+', encoding="utf-8") as json_file:
                 branch_settings = json.load(json_file)
