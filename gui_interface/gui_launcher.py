@@ -3,7 +3,7 @@
 from tkinter import ttk
 from ttkthemes import ThemedTk
 
-from modules import select_network, end_screen
+from .modules import select_network, end_screen
 
 
 class GUI(ThemedTk):
