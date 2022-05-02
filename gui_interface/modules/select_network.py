@@ -66,7 +66,7 @@ class WiFiGUI(ttk.Frame):
 
         # ------------------------ Connect to Selected Network ----------------------- #
         labelframe = ttk.Label(
-            self, width=400, height=200, text="Connect",
+            self, text="Connect",
             font=("Helvetica", 32)
         )
 
