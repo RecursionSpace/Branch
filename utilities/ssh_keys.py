@@ -1,6 +1,9 @@
 ''' Manages the implementation of SSH keys for the user. '''
 
 
+from re import sub
+
+
 def new_deploy_key():
     '''
     Creates a new key pair that is used for deployments.
@@ -18,9 +21,10 @@ def new_deploy_key():
         sys.exit(1)
 
     # Create the key pair.
-
+    subprocess.call(['touch', '~/.ssh/id_rsa'])
+    subprocess.call(['touch', '~/.ssh/id_rsa.pub'])
     subprocess.call(['ssh-keygen', '-t', 'ed25519', '-C',
-                    f'{os.environ["USER"]}', '-f', '~/.ssh/id_rsa', '-N', '""'])
+                    f'{os.environ["USER"]}', '-f', '~/.ssh/id_rsa', '-q', '-N', '""'])
     subprocess.call(['chmod', '600', '~/.ssh/id_rsa'])
     subprocess.call(['chmod', '644', '~/.ssh/id_rsa.pub'])
 
