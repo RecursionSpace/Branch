@@ -7,3 +7,5 @@ def clone(url):
     ''' Clones the repository from the given URL. '''
     os.chdir('/opt/')
     os.system(f'git clone {url}')
+
+    return True

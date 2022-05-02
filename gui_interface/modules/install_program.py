@@ -10,6 +10,7 @@ class InstallProgram(ttk.Frame):
 
     def __init__(self, init_window_name, controller):
         ttk.Frame.__init__(self, init_window_name)
+        self.controller = controller
 
         self.get_url_value = StringVar()  # URL Field
 
@@ -34,4 +35,5 @@ class InstallProgram(ttk.Frame):
     def install_program(self):
         ''' Downloads and installs the program. '''
         url = self.get_url_value.get()
-        fetch_program.clone(url)
+        if fetch_program.clone(url):
+            self.controller.show_frame("EndScreen")
