@@ -22,7 +22,7 @@ def new_deploy_key():
 
     # Create the key pair.
     subprocess.Popen(
-        ['touch', f'/home/{os.environ["USER"]}/ssh/id_rsa'], shell=True)
+        ['touch', f'"/home/{os.environ["USER"]}/ssh/id_rsa"'], shell=True)
     subprocess.Popen(
         ['touch', f'/home/{os.environ["USER"]}/.ssh/id_rsa.pub'], shell=True)
     subprocess.call(['ssh-keygen', '-t', 'ed25519', '-C',
