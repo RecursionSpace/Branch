@@ -21,10 +21,6 @@ def new_deploy_key():
         sys.exit(1)
 
     # Create the key pair.
-    subprocess.Popen(
-        ['touch', f'"/home/{os.environ["USER"]}/ssh/id_rsa"'], shell=True)
-    subprocess.Popen(
-        ['touch', f'/home/{os.environ["USER"]}/.ssh/id_rsa.pub'], shell=True)
     subprocess.call(['ssh-keygen', '-t', 'ed25519', '-C',
                     f'{os.environ["USER"]}', '-f', f'/home/{os.environ["USER"]}/.ssh/id_rsa', '-q', '-N', '""'])
     subprocess.call(
