@@ -37,11 +37,12 @@ class WiFiGUI(ttk.Frame):
             [const.IFACE_DISCONNECTED, const.IFACE_INACTIVE]
 
         # ----------------------------- List of Networks ----------------------------- #
-        wifi_labelframe = ttk.LabelFrame(self, text="Available Networks")
+        wifi_labelframe = ttk.LabelFrame(
+            self, text="Available Networks"
+            font=("Helvetica", 32)
+        )
 
-        wifi_labelframe.pack(ipadx=20, ipady=20)
-
-        # wifi_labelframe.place(relx=0.5, rely=0.5, anchor=CENTER)
+        wifi_labelframe.pack(fill="x", expand=True, ipadx=20, ipady=20)
 
         # Define tree structure and scroll bars
         self.wifi_tree = ttk.Treeview(
@@ -65,12 +66,11 @@ class WiFiGUI(ttk.Frame):
 
         # ------------------------ Connect to Selected Network ----------------------- #
         labelframe = ttk.LabelFrame(
-            self, width=400, height=200, text="Connect ")
+            self, width=400, height=200, text="Connect"
+            font=("Helvetica", 32)
+        )
 
-        # labelframe.grid(column=1, row=3, padx=10, pady=5)
         labelframe.pack(fill="x", expand=True)
-
-        # labelframe.place(relx=0.5, rely=0.5, anchor=CENTER)
 
         ttk.Button(labelframe, text="Re-Scan WiFi Networks",
                    command=self.scans_wifi_list).grid(column=0, row=0)
