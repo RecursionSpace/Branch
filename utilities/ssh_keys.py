@@ -26,7 +26,7 @@ def new_deploy_key():
     subprocess.Popen(
         ['touch', f'/home/{os.environ["USER"]}/.ssh/id_rsa.pub'], shell=True)
     subprocess.call(['ssh-keygen', '-t', 'ed25519', '-C',
-                    f'{os.environ["USER"]}', '-f', '~/.ssh/id_rsa', '-q', '-N', '""'])
+                    f'{os.environ["USER"]}', '-f', f'/home/{os.environ["USER"]}/.ssh/id_rsa', '-q', '-N', '""'])
     subprocess.call(['chmod', '600', '~/.ssh/id_rsa'])
     subprocess.call(['chmod', '644', '~/.ssh/id_rsa.pub'])
 
