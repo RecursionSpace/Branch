@@ -1,5 +1,5 @@
 '''Main program that control actions.'''
 
-import gui_interface
+from gui_interface import gui_launcher
 
-gui_interface.gui_launcher.start_gui()
+gui_launcher.start_gui()
