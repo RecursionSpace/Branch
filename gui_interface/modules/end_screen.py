@@ -14,6 +14,6 @@ class EndScreen(ttk.Frame):
 
         label = ttk.Label(
             self, text=f"IP: {network.get_addresses()}",
-            font=("Helvetica", 14)
+            font=("Helvetica", 32)
         )
-        label.pack(ipadx=10, ipady=10)
+        label.pack(ipadx=20, ipady=20)
