@@ -15,32 +15,13 @@ class EndScreen(ttk.Frame):
         self.main_window = main_window
         self.controller = controller
 
-        self.label = ttk.Label(
-            self, text=f"IP: {network.get_addresses()}",
-            font=("Helvetica", 32)
-        )
-        self.label.pack(ipadx=20, ipady=20)
-
-        try:
-            with open('/opt/Branch/branch.json', 'r+', encoding="utf-8") as json_file:
-                branch_settings = json.load(json_file)
-
-            program_label = ttk.Label(
-                self, text=f"Program: {branch_settings['program_name']}",
-                font=("Helvetica", 32)
-            )
-            program_label.pack(ipadx=20, ipady=20)
-        except KeyError as err:
-            print(f"Could not open {err}")
-            self.controller.show_frame("InstallProgram")
-
     def refresh(self):
         '''Resets the frame'''
-        self.label = ttk.Label(
+        label = ttk.Label(
             self, text=f"IP: {network.get_addresses()}",
             font=("Helvetica", 32)
         )
-        self.label.pack(ipadx=20, ipady=20)
+        label.pack(ipadx=20, ipady=20)
 
         try:
             with open('/opt/Branch/branch.json', 'r+', encoding="utf-8") as json_file:
