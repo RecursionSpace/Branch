@@ -149,5 +149,5 @@ class WiFiGUI(ttk.Frame):
 
     def refresh(self):
         '''Resets the frame'''
-        self.destroy()
-        self.__init__(self.init_window_name, self.controller)
+        # self.destroy()
+        # self.__init__(self.init_window_name, self.controller)

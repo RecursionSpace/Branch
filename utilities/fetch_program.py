@@ -13,7 +13,10 @@ def clone(url):
         branch_settings = json.load(json_file)
 
     branch_settings['program_installed'] = True
-    branch_settings['program_name'] = f"{url.split('/')[-1]}"
+
+    repo_name = url.split('/')[-1].split('.')[0]
+
+    branch_settings['program_name'] = repo_name
 
     with open('/opt/Branch/branch.json', 'w', encoding="utf-8") as json_file:
         json.dump(branch_settings, json_file)
