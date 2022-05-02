@@ -38,7 +38,7 @@ class WiFiGUI(ttk.Frame):
 
         # ----------------------------- List of Networks ----------------------------- #
         wifi_labelframe = ttk.LabelFrame(
-            self, text="Available Networks"
+            self, text="Available Networks",
             font=("Helvetica", 32)
         )
 
@@ -66,7 +66,7 @@ class WiFiGUI(ttk.Frame):
 
         # ------------------------ Connect to Selected Network ----------------------- #
         labelframe = ttk.LabelFrame(
-            self, width=400, height=200, text="Connect"
+            self, width=400, height=200, text="Connect",
             font=("Helvetica", 32)
         )
 
