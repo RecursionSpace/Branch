@@ -36,8 +36,6 @@ class WiFiGUI(ttk.Frame):
         assert self.iface.status() in\
             [const.IFACE_DISCONNECTED, const.IFACE_INACTIVE]
 
-        # self.scans_wifi_list()
-
         # ----------------------------- List of Networks ----------------------------- #
         wifi_labelframe = ttk.LabelFrame(self, text="Available Networks")
 
@@ -96,6 +94,8 @@ class WiFiGUI(ttk.Frame):
         button = ttk.Button(self, text="Go to the end page",
                             command=lambda: controller.show_frame("EndScreen"))
         button.pack()
+
+        self.scans_wifi_list()  # Scan for networks on launch
 
     def scans_wifi_list(self):
         '''

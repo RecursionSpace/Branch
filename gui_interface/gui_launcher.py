@@ -82,4 +82,9 @@ if __name__ == "__main__":
     app = GUI()
     app.mainloop()
 
+
+def start_gui():
+    app = GUI()
+    app.mainloop()
+
 # init_window.mainloop()
