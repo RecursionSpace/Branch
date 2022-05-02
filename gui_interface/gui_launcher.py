@@ -46,45 +46,15 @@ class GUI(ThemedTk):
         selected_frame.tkraise()
 
 
-# init_window = ThemedTk(theme="equilux")
-# init_window.attributes("-fullscreen", True)
+def start_gui():
+    '''
+    Called to open the GUI
+    '''
+    app = GUI()
+    app.mainloop()
 
-# init_window.title("WiFi Selection")
 
-# width = init_window.winfo_screenwidth()
-# height = init_window.winfo_screenheight()
-# init_window.geometry(f"{width}x{height}")
-
-# creating a container
-# container = ttk.Frame(init_window)
-# container.pack(side="top", fill="both", expand=True)
-
-# container.grid_rowconfigure(0, weight=1)
-# container.grid_columnconfigure(0, weight=1)
-
-# frames = {}
-
-# for F in (select_network.WiFiGUI, end_screen.EndScreen):
-#     frame = F(container)
-#     frames[F] = frame
-
-#     frame.grid(row=0, column=0, sticky="nsew")
-
-# show_frame(select_network.WiFiGUI)
-# show_frame(end_screen.EndScreen)
-
-# user_interface = select_network.WiFiGUI(init_window)
-
-# user_interface.set_init_window()
-# user_interface.scans_wifi_list()  # Scan for networks before starting
-
+# Launch the GUI if this is the main file
 if __name__ == "__main__":
     app = GUI()
     app.mainloop()
-
-
-def start_gui():
-    app = GUI()
-    app.mainloop()
-
-# init_window.mainloop()
