@@ -2,6 +2,7 @@
 
 import os
 import time
+import json
 
 from tkinter import (
     StringVar, W, NSEW, VERTICAL, NS, ttk, CENTER
@@ -145,7 +146,16 @@ class WiFiGUI(ttk.Frame):
         os.system(
             f"nmcli device wifi connect '{wifi_ssid}' password {pwd_Str}")
 
-        return bool(self.iface.status() == const.IFACE_CONNECTED)
+        if self.iface.status() == const.IFACE_CONNECTED:
+            print("Connected!")
+
+            with open('/opt/Branch/branch.json', 'r+', encoding="utf-8") as json_file:
+                branch_settings = json.load(json_file)
+
+            if not branch_settings['program_installed']:
+                self.controller.show_frame("InstallProgram")
+            else:
+                self.show_frame("EndScreen")
 
     def refresh(self):
         '''Resets the frame'''
