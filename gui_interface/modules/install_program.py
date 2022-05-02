@@ -2,7 +2,7 @@
 
 from tkinter import ttk, StringVar
 
-from utilities import network
+from utilities import fetch_program
 
 
 class InstallProgram(ttk.Frame):
@@ -34,4 +34,4 @@ class InstallProgram(ttk.Frame):
     def install_program(self):
         ''' Downloads and installs the program. '''
         url = self.get_url_value.get()
-        # network.download_and_install(url)
+        fetch_program.clone(url)
