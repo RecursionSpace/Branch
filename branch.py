@@ -5,7 +5,7 @@ import json
 from gui_interface import gui_launcher
 
 # Open branch.json or create it if it doesn't exist
-if not os.path.exists('branch.json'):
+if not os.path.exists('/opt/Branch/branch.json'):
     with open('/opt/Branch/branch.json', 'w', encoding="utf-8") as f:
         branch_json = {
             'program_installed': False,
