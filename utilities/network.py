@@ -1,6 +1,13 @@
 import socket
 
 
+def is_connected():
+    '''
+    Check if the system is networked
+    '''
+    return bool(get_addresses() != '127.0.0.1')
+
+
 def get_addresses():
     '''
     Get the addresses of the network interfaces

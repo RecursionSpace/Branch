@@ -3,7 +3,9 @@
 from tkinter import ttk
 from ttkthemes import ThemedTk
 
-from .modules import select_network, end_screen
+from .modules import select_network, end_screen, install_program
+
+from utilities import network
 
 
 class GUI(ThemedTk):
@@ -29,14 +31,17 @@ class GUI(ThemedTk):
 
         self.frames = {}
 
-        for F in (select_network.WiFiGUI, end_screen.EndScreen):
+        for F in (select_network.WiFiGUI, install_program.InstallProgram, end_screen.EndScreen):
             page_name = F.__name__
             frame = F(container, self)
             self.frames[page_name] = frame
 
             frame.grid(row=0, column=0, sticky="nsew")
 
-        self.show_frame("WiFiGUI")
+        if network.is_connected():
+            self.show_frame("InstallProgram")
+        else:
+            self.show_frame("WiFiGUI")
 
     def show_frame(self, cont):
         '''
