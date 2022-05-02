@@ -56,6 +56,7 @@ class GUI(ThemedTk):
         Shows the selected frame
         '''
         selected_frame = self.frames[cont]
+        selected_frame.reset()
         selected_frame.tkraise()
 
 
