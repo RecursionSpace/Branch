@@ -26,3 +26,6 @@ def new_deploy_key():
 
     # Add your SSH private key to the ssh-agent.
     subprocess.call(['ssh-add', '~/.ssh/id_rsa'])
+
+
+new_deploy_key()
