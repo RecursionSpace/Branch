@@ -155,7 +155,7 @@ class WiFiGUI(ttk.Frame):
             if not branch_settings['program_installed']:
                 self.controller.show_frame("InstallProgram")
             else:
-                self.show_frame("EndScreen")
+                self.controller.show_frame("EndScreen")
 
     def refresh(self):
         '''Resets the frame'''
