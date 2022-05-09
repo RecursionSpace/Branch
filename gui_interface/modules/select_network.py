@@ -13,9 +13,6 @@ from pywifi import const
 
 from utilities import network
 
-if os.environ.get('DISPLAY', '') == '':
-    os.environ.__setitem__('DISPLAY', ':0.0')
-
 
 class WiFiGUI(ttk.Frame):
     '''

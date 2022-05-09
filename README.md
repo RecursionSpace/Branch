@@ -69,3 +69,5 @@ autologin-user=jmerrell
 autologin-user-timeout=0
 user-session=branch
 ```
+
+https://stackoverflow.com/questions/34917237/make-git-clone-with-sudo
