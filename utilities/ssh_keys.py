@@ -1,30 +1,34 @@
 ''' Manages the implementation of SSH keys for the user. '''
 
+import os
+import subprocess
+import sys
+from pathlib import Path
 
-from re import sub
+import ssh_agent_setup
 
 
 def new_deploy_key():
     '''
     Creates a new key pair that is used for deployments.
     '''
-    import os
-    import subprocess
-    import sys
-    from pathlib import Path
-
-    import ssh_agent_setup
 
     # Check if the key pair already exists.
-    if Path('/home/{}/.ssh/id_rsa.pub'.format(os.environ['USER'])).is_file():
+    if Path(f'/home/{os.environ["USER"]}/.ssh/id_rsa.pub').is_file():
         print('The key pair already exists. Please remove it before creating a new one.')
         sys.exit(1)
 
     # Create the key pair.
-    subprocess.call(['ssh-keygen', '-t', 'ed25519', '-C',
-                    f'{os.environ["USER"]}', '-f', f'/home/{os.environ["USER"]}/.ssh/id_rsa', '-q', '-N', '""'])
+    subprocess.call([
+        'ssh-keygen', '-t', 'ed25519',
+        '-C', f'{os.environ["USER"]}',
+        '-f', f'/home/{os.environ["USER"]}/.ssh/id_rsa',
+        '-q', '-N', '""'
+    ])
+
     subprocess.call(
         ['chmod', '600', f'/home/{os.environ["USER"]}/.ssh/id_rsa'])
+
     subprocess.call(
         ['chmod', '644', f'/home/{os.environ["USER"]}/.ssh/id_rsa.pub'])
 

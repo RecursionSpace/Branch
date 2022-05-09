@@ -1,6 +1,6 @@
 '''Called to launch the branch program, determining how the user will interact with the program.'''
+
 import os
-import json
 
 from gui_interface import gui_launcher
 

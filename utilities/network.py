@@ -1,3 +1,5 @@
+''' Network utilities '''
+
 import socket
 
 
@@ -6,21 +8,22 @@ def is_connected():
     Check if the system is networked
     '''
     return bool(get_addresses() != '127.0.0.1')
-    # return False
 
 
 def get_addresses():
     '''
     Get the addresses of the network interfaces
     '''
-    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    s.settimeout(0)
+    network_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    network_socket.settimeout(0)
+
     try:
         # doesn't even have to be reachable
-        s.connect(('10.255.255.255', 1))
-        IP = s.getsockname()[0]
+        network_socket.connect(('10.255.255.255', 1))
+        ip_address = network_socket.getsockname()[0]
     except Exception:
-        IP = '127.0.0.1'
+        ip_address = '127.0.0.1'
     finally:
-        s.close()
-    return IP
+        network_socket.close()
+
+    return ip_address

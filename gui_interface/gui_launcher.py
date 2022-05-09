@@ -5,10 +5,9 @@ import json
 
 from tkinter import ttk
 from ttkthemes import ThemedTk
+from utilities import network
 
 from .modules import select_network, end_screen, install_program
-
-from utilities import network
 
 if os.environ.get('DISPLAY', '') == '':
     os.environ.__setitem__('DISPLAY', ':0.0')
@@ -69,8 +68,8 @@ def start_gui():
     '''
     Called to open the GUI
     '''
-    app = GUI()
-    app.mainloop()
+    start_app = GUI()
+    start_app.mainloop()
 
 
 # Launch the GUI if this is the main file

@@ -1,0 +1,4 @@
+pywifi
+ssh-agent-setup
+tk
+ttkthemes

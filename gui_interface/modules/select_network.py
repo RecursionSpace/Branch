@@ -5,7 +5,7 @@ import time
 import json
 
 from tkinter import (
-    StringVar, W, NSEW, VERTICAL, NS, ttk, CENTER
+    StringVar, W, NSEW, VERTICAL, NS, ttk
 )
 
 import pywifi
@@ -116,32 +116,33 @@ class WiFiGUI(ttk.Frame):
         '''
         Treeview binding events. Updates network name to the selected network.
         '''
-        self.sels = event.widget.selection()
-        self.get_wifi_value.set(self.wifi_tree.item(self.sels, "values")[1])
+        sels = event.widget.selection()
+        self.get_wifi_value.set(self.wifi_tree.item(sels, "values")[1])
 
     def connect(self):
         '''
         Connect to the wifi network
         '''
         wifi_ssid = str(self.get_wifi_value.get())
-        pwd_Str = str(self.get_wifi_password_value.get())
+        password_string = str(self.get_wifi_password_value.get())
 
-        print(f"Connecting to {wifi_ssid} with password {pwd_Str}")
+        print(f"Connecting to {wifi_ssid} with password {password_string}")
 
-        self.profile = pywifi.Profile()
-        self.profile.ssid = wifi_ssid  # wifi name
-        self.profile.auth = const.AUTH_ALG_OPEN  # network card opening
-        self.profile.akm.append(const.AKM_TYPE_WPA2PSK)  # wifi encryption
-        self.profile.cipher = const.CIPHER_TYPE_CCMP  # encryption unit
-        self.profile.key = pwd_Str  # password
+        profile = pywifi.Profile()
+        profile.ssid = wifi_ssid  # wifi name
+        profile.auth = const.AUTH_ALG_OPEN  # network card opening
+        profile.akm.append(const.AKM_TYPE_WPA2PSK)  # wifi encryption
+        profile.cipher = const.CIPHER_TYPE_CCMP  # encryption unit
+        profile.key = password_string  # password
+
         self.iface.remove_all_network_profiles()  # delete all wifi files
-        self.tmp_profile = self.iface.add_network_profile(self.profile)
-        self.iface.connect(self.tmp_profile)  # Link
+        tmp_profile = self.iface.add_network_profile(profile)
+        self.iface.connect(tmp_profile)  # Link
         time.sleep(5)
 
         # Working method to connect
         os.system(
-            f"nmcli device wifi connect '{wifi_ssid}' password {pwd_Str}")
+            f"nmcli device wifi connect '{wifi_ssid}' password {password_string}")
 
         with open('/opt/Branch/branch.json', 'r+', encoding="utf-8") as json_file:
             branch_settings = json.load(json_file)
