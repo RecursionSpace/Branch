@@ -1,4 +1,21 @@
+<div align="center">
+
 # Branch
+
+[![Code Quality](https://github.com/RecursionSpace/Branch/actions/workflows/pylint.yml/badge.svg)](https://github.com/RecursionSpace/Branch/actions/workflows/pylint.yml)
+
+</div>
+
+## Table of Contents
+
+- [Branch](#branch)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+  - [Network Connection Wizard](#network-connection-wizard)
+    - [AP Mode](#ap-mode)
+    - [GUI Wizard](#gui-wizard)
+  - [Configuration](#configuration)
+  - [process](#process)
 
 Prepares a device for the installation of custom software.
 
