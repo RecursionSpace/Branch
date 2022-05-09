@@ -21,7 +21,7 @@ def get_addresses():
         # doesn't even have to be reachable
         network_socket.connect(('10.255.255.255', 1))
         ip_address = network_socket.getsockname()[0]
-    except Exception:
+    except socket.error:
         ip_address = '127.0.0.1'
     finally:
         network_socket.close()

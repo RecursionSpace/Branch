@@ -34,4 +34,4 @@ jobs:
 
       - name: Lint Project Level
         run: |
-          find . -path '**/migrations' -prune -false -o -name '*.py' | xargs pylint
+          find . -path '**/migrations' -prune -false -o -name '*.py' | xargs pylint -rcfile=.github/.pylintrc
