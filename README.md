@@ -16,6 +16,7 @@
     - [GUI Wizard](#gui-wizard)
   - [Configuration](#configuration)
   - [process](#process)
+  - [Definitions](#definitions)
 
 Prepares a device for the installation of custom software.
 
@@ -88,3 +89,8 @@ user-session=branch
 ```
 
 https://stackoverflow.com/questions/34917237/make-git-clone-with-sudo
+
+## Definitions
+
+*Stem* - This program that allows for branch programs to connect to.
+*Branch* - The program that is connected to the stem.
