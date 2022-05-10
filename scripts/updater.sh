@@ -7,4 +7,9 @@ config_file=$(jq --raw-output '.branch.config_file' /opt/Stem/stem.json)
 
 current_version=$(jq --raw-output '.current_version' "${branch_dir}${config_file}")
 
+version_url_endpoint=$(jq --raw-output '.branch.version_url_endpoint' /opt/Stem/stem.json)
+
+latest_version=$(curl --silent "${version_url_endpoint}")
+
 echo "Current version: $current_version"
+echo "Latest version: $latest_version"
