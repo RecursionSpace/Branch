@@ -53,8 +53,10 @@ if [ "$current_version" != "$latest_version" ]; then
     # Rename the extracted directory to the latest version.
     mv /opt/Stem/branch_staging/"$(ls -N /opt/Stem/branch_staging)" /opt/Stem/branch_staging/"${latest_version_underscored}"
 
+    cd /opt/Stem/branch_staging/"$latest_version_underscored" || exit
+
     # Run the installer.
-    if [ "$(cd /opt/Stem/branch_staging/$latest_version_underscored;sudo ./install.sh)" -ne 0 ]; then
+    if [ "$(sudo ./install.sh)" -ne 0 ]; then
         echo "Installer failed."
     else
         echo "Branch updated to version ${latest_version}."
