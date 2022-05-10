@@ -47,9 +47,9 @@ if [ "$current_version" != "$latest_version" ]; then
     rm /opt/Stem/branch_staging/"$latest_version".zip
 
     # Rename the extracted directory to the latest version.
-    mv /opt/Stem/branch_staging/$(ls -N /opt/Stem/branch_staging) /opt/Stem/branch_staging/"$latest_version"
+    mv /opt/Stem/branch_staging/$(ls -N /opt/Stem/branch_staging) /opt/Stem/branch_staging/"${latest_version}"
 
-    cd /opt/Stem/branch_staging/"$latest_version"
+    cd /opt/Stem/branch_staging/"$latest_version" || exit
 
     # Run the installer.
     ./install.sh
