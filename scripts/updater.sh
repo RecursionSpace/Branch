@@ -40,8 +40,7 @@ if [ "$current_version" != "$latest_version" ]; then
     curl -H 'Authorization: token ${access_token}' \
         -H 'Accept: application/vnd.github.v3.raw' \
         --output /opt/Stem/branch_staging/"${latest_version}".zip \
-        --location "https://${access_token}@raw.githubusercontent.com/justinmerrell/blokbot-trainer/zipball/main"
-        # --location "${update_url}"
+        --location "${update_url}"
 
     # Unzip the latest version.
     unzip /opt/Stem/branch_staging/"$latest_version".zip -d /opt/Stem/branch_staging
