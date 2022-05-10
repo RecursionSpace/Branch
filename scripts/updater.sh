@@ -26,6 +26,9 @@ if [ "$current_version" != "$latest_version" ]; then
     echo "Update available."
     mkdir -p /opt/Stem/branch_staging;
 
+    # Convert latest version separators to underscores.
+    latest_version=$(echo "${latest_version}" | tr '.' '_')
+
     # Download the latest version.
     curl -H 'Authorization: token ${access_token}' \
         -H 'Accept: application/vnd.github.v3.raw' \
