@@ -37,9 +37,9 @@ if [ "$current_version" != "$latest_version" ]; then
     echo "Update URL: ${update_url}"
 
     # Download the latest version.
-    curl -H 'Authorization: token ${access_token}' \
-        --output /opt/Stem/branch_staging/"${latest_version}".zip \
-        --location ${update_url}
+    curl -H "Authorization: token  ${access_token}" \
+        --output "/opt/Stem/branch_staging/${latest_version}.zip" \
+        --location "${update_url}""
 
     # Unzip the latest version.
     unzip /opt/Stem/branch_staging/"$latest_version".zip -d /opt/Stem/branch_staging
