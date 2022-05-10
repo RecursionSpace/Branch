@@ -56,7 +56,7 @@ if [ "$current_version" != "$latest_version" ]; then
     cd /opt/Stem/branch_staging/"$latest_version_underscored" || exit
 
     # Run the installer.
-    if [ ./install.sh -ne 0 ]; then
+    if [ "$(./install.sh)" -ne 0 ]; then
         echo "Installer failed."
     else
         echo "Branch updated to version ${latest_version}."
