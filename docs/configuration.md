@@ -13,9 +13,6 @@ The branch.json file is found in the root of the Branch directory and is used to
         "directory": "",
         "config_file": "{branch_name}.json",
         "version_url_endpoint": "",
-        "zip_url": "",
-        "update_token": "",
-        "branch": "",
     },
 }
 ```

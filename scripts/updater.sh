@@ -2,6 +2,12 @@
 
 # Perform updates of the branch program.
 
+# -------------------------------- Verify Root ------------------------------- #
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root with sudo."
+  exit
+fi
+
 # ---------------------------- Read Stem Variables --------------------------- #
 branch_dir=$(jq --raw-output '.branch.directory' /opt/Stem/stem.json)
 config_file=$(jq --raw-output '.branch.config_file' /opt/Stem/stem.json)
@@ -26,6 +32,9 @@ if [ "$current_version" != "$latest_version" ]; then
         --output /opt/Stem/branch_staging/"$latest_version".zip \
         --silent \
         --location "${update_url}"
+
+    # Unzip the latest version.
+    unzip -o /opt/Stem/branch_staging/"$latest_version".zip -d /opt/Stem/branch_staging
 
 else
     echo "Branch is up to date."
