@@ -13,3 +13,10 @@ latest_version=$(curl --silent "${version_url_endpoint}")
 
 echo "Current version: $current_version"
 echo "Latest version: $latest_version"
+
+if [ "$current_version" != "$latest_version" ]; then
+    echo "Update available."
+else
+    echo "Branch is up to date."
+    exit 0
+fi

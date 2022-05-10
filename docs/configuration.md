@@ -19,13 +19,13 @@ The branch.json file is found in the root of the Branch directory and is used to
 }
 ```
 
-| Key                  | Value                                                             |
-|----------------------|-------------------------------------------------------------------|
-| name                 | The name of the branch.                                           |
-| directory            | The directory that the branch is located in.                      |
-| config_file          | The name of the branches config file within the branch directory. |
-| version_url_endpoint | The url endpoint to get the latest version from.                  |
-| url                  | The url of the program to be branched                             |
+| Key                  | Value                                                                            |
+|----------------------|----------------------------------------------------------------------------------|
+| name                 | The name of the branch.                                                          |
+| directory            | The directory that the branch is located in.                                     |
+| config_file          | The name of the branches config file within the branch directory.                |
+| version_url_endpoint | The url endpoint to get the latest version from. Needs to be full URL with HTTPS |
+| url                  | The url of the program to be branched                                            |
 
 ## branch.conf
 
