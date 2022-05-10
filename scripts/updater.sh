@@ -62,6 +62,7 @@ if [ "$current_version" != "$latest_version" ]; then
         echo "Branch updated to version ${latest_version}."
         tmp=$(mktemp)
         jq --arg version "${latest_version}" '.current_version = $version' "${branch_dir}${config_file}" > "$tmp" && mv "$tmp" "${branch_dir}${config_file}"
+        exit 0
     fi
 
 else
