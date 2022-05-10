@@ -38,7 +38,6 @@ if [ "$current_version" != "$latest_version" ]; then
 
     # Download the latest version.
     curl -H 'Authorization: token ${access_token}' \
-        -H 'Accept: application/vnd.github.v3.raw' \
         --output /opt/Stem/branch_staging/"${latest_version}".zip \
         --location ${update_url}
 
