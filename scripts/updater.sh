@@ -39,27 +39,29 @@ if [ "$current_version" != "$latest_version" ]; then
     mkdir -p /opt/Stem/branch_staging;
 
     # Convert latest version separators to underscores.
-    latest_version=$(echo "${latest_version}" | tr '.' '_')
+    latest_version_underscored=$(echo "${latest_version}" | tr '.' '_')
 
     # Download the latest version.
     curl -H "Authorization: token  ${access_token}" \
-        --output "/opt/Stem/branch_staging/${latest_version}.zip" \
+        --output "/opt/Stem/branch_staging/${latest_version_underscored}.zip" \
         --silent --location "${update_url}"
 
-    unzip /opt/Stem/branch_staging/"$latest_version".zip -d /opt/Stem/branch_staging    # Unzip the latest version.
+    unzip /opt/Stem/branch_staging/"$latest_version_underscored".zip -d /opt/Stem/branch_staging    # Unzip the latest version.
 
-    rm /opt/Stem/branch_staging/"$latest_version".zip                                   # Remove the zip file.
+    rm /opt/Stem/branch_staging/"$latest_version_underscored".zip                                   # Remove the zip file.
 
     # Rename the extracted directory to the latest version.
-    mv /opt/Stem/branch_staging/"$(ls -N /opt/Stem/branch_staging)" /opt/Stem/branch_staging/"${latest_version}"
+    mv /opt/Stem/branch_staging/"$(ls -N /opt/Stem/branch_staging)" /opt/Stem/branch_staging/"${latest_version_underscored}"
 
-    cd /opt/Stem/branch_staging/"$latest_version" || exit
+    cd /opt/Stem/branch_staging/"$latest_version_underscored" || exit
 
     # Run the installer.
     if [ ./install.sh -ne 0 ]; then
         echo "Installer failed."
     else
         echo "Branch updated to version ${latest_version}."
+        tmp=$(mktemp)
+        jq '.current_version = "$latest_version"' "${branch_dir}${config_file}" > "$tmp" && mv "$tmp" "${branch_dir}${config_file}"
     fi
 
 else
