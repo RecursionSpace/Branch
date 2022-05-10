@@ -38,10 +38,10 @@ sudo apt-get install xserver-xorg xinit -y
 sudo apt-get install nodm -y
 
 # ------------------------- Create Configuration File ------------------------ #
-sudo touch /opt/Branch/branch.json
+sudo touch /opt/Stem/stem.json
 echo '{
-    "program_installed": false,
-}' > /opt/Branch/branch.json
+    "branch_installed": false,
+}' > /opt/Stem/stem.json
 
 
 # -------------------------------- Setup User -------------------------------- #

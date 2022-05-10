@@ -8,6 +8,7 @@ The branch.json file is found in the root of the Branch directory and is used to
 
 ``` json
 {
+    "branch_installed": false,
     "branch": {
         "name": "",
         "directory": "",

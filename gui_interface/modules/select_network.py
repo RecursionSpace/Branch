@@ -144,10 +144,10 @@ class WiFiGUI(ttk.Frame):
         os.system(
             f"nmcli device wifi connect '{wifi_ssid}' password {password_string}")
 
-        with open('/opt/Branch/branch.json', 'r+', encoding="utf-8") as json_file:
+        with open('/opt/Stem/stem.json', 'r+', encoding="utf-8") as json_file:
             branch_settings = json.load(json_file)
 
-        if network.is_connected() and not branch_settings['program_installed']:
+        if network.is_connected() and not branch_settings['branch_installed']:
             self.controller.show_frame("InstallProgram")
         else:
             self.controller.show_frame("EndScreen")

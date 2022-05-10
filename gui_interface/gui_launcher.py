@@ -12,7 +12,7 @@ from .modules import select_network, end_screen, install_program
 if os.environ.get('DISPLAY', '') == '':
     os.environ.__setitem__('DISPLAY', ':0.0')
 
-with open('/opt/Branch/branch.json', 'r+', encoding="utf-8") as json_file:
+with open('/opt/Stem/stem.json', 'r+', encoding="utf-8") as json_file:
     branch_settings = json.load(json_file)
 
 
@@ -49,7 +49,7 @@ class GUI(ThemedTk):
         if not network.is_connected():
             self.show_frame("WiFiGUI")
 
-        elif network.is_connected() and not branch_settings['program_installed']:
+        elif network.is_connected() and not branch_settings['branch_installed']:
             self.show_frame("InstallProgram")
 
         else:
