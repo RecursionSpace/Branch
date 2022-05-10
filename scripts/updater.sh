@@ -34,7 +34,7 @@ if [ "$current_version" != "$latest_version" ]; then
         --location "${update_url}"
 
     # Unzip the latest version.
-    jar xvf /opt/Stem/branch_staging/"$latest_version".zip -d /opt/Stem/branch_staging
+    jar xvf /opt/Stem/branch_staging/"$latest_version".zip
 
 else
     echo "Branch is up to date."
