@@ -2,20 +2,31 @@
 
 # Perform updates of the branch program.
 
+# ---------------------------- Read Stem Variables --------------------------- #
 branch_dir=$(jq --raw-output '.branch.directory' /opt/Stem/stem.json)
 config_file=$(jq --raw-output '.branch.config_file' /opt/Stem/stem.json)
-
-current_version=$(jq --raw-output '.current_version' "${branch_dir}${config_file}")
-
 version_url_endpoint=$(jq --raw-output '.branch.version_url_endpoint' /opt/Stem/stem.json)
 
+# --------------------------- Read Branch Variables -------------------------- #
+current_version=$(jq --raw-output '.current_version' "${branch_dir}${config_file}")
 latest_version=$(curl --silent "${version_url_endpoint}")
+update_url=$(jq --raw-output '.update_url' "${branch_dir}${config_file}")
+access_token=$(jq --raw-output '.access_token' "${branch_dir}${config_file}")
 
 echo "Current version: $current_version"
 echo "Latest version: $latest_version"
 
 if [ "$current_version" != "$latest_version" ]; then
     echo "Update available."
+    mkdir -p /opt/Stem/branch_staging;
+
+    # Download the latest version.
+    curl -H 'Authorization: token ${access_token}' \
+        -H 'Accept: application/vnd.github.v3.raw' \
+        --output /opt/Stem/branch_staging/"$latest_version".zip \
+        --silent \
+        --location "${update_url}"
+
 else
     echo "Branch is up to date."
     exit 0
