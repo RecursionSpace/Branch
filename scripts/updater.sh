@@ -36,11 +36,6 @@ if [ "$current_version" != "$latest_version" ]; then
 
     echo "Update URL: ${update_url}"
 
-    # Get the filename of the latest version.
-    zip_name=$(curl -H "Authorization: token  ${access_token}" -I --location "${update_url}" | grep -o -E 'filename=.*$' | sed -e 's/filename=//')
-
-    echo "Zip name: ${zip_name}"
-
     # Download the latest version.
     curl -H "Authorization: token  ${access_token}" \
         --output "/opt/Stem/branch_staging/${latest_version}.zip" \
@@ -51,7 +46,13 @@ if [ "$current_version" != "$latest_version" ]; then
 
     rm /opt/Stem/branch_staging/"$latest_version".zip
 
+    # Rename the extracted directory to the latest version.
     mv /opt/Stem/branch_staging/$(ls -N /opt/Stem/branch_staging) /opt/Stem/branch_staging/"$latest_version"
+
+    cd /opt/Stem/branch_staging/"$latest_version"
+
+    # Run the installer.
+    ./install.sh
 
 else
     echo "Branch is up to date."
