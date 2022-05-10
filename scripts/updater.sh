@@ -24,10 +24,17 @@ echo "Latest version: $latest_version"
 
 if [ "$current_version" != "$latest_version" ]; then
     echo "Update available."
+
+    if [ -d "/opt/Stem/branch_staging" ]; then
+        rm -r /opt/Stem/branch_staging
+    fi
+
     mkdir -p /opt/Stem/branch_staging;
 
     # Convert latest version separators to underscores.
     latest_version=$(echo "${latest_version}" | tr '.' '_')
+
+    echo "Update URL: ${update_url}"
 
     # Download the latest version.
     curl -H 'Authorization: token ${access_token}' \
