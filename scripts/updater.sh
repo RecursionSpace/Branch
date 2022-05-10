@@ -37,8 +37,7 @@ if [ "$current_version" != "$latest_version" ]; then
     echo "Update URL: ${update_url}"
 
     # Get the filename of the latest version.
-    zip_name=curl -H "Authorization: token  ${access_token}" \
-                   -O -J --location "${update_url}"
+    zip_name=$(curl -H "Authorization: token  ${access_token}" -J --location "${update_url}")
 
     echo "Zip name: ${zip_name}"
 
