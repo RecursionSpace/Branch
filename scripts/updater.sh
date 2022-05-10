@@ -51,7 +51,7 @@ if [ "$current_version" != "$latest_version" ]; then
 
     rm /opt/Stem/branch_staging/"$latest_version".zip
 
-    mv $(ls -N /opt/Stem/branch_staging) /opt/Stem/branch_staging/"$latest_version"
+    mv /opt/Stem/branch_stagin/$(ls -N /opt/Stem/branch_staging) /opt/Stem/branch_staging/"$latest_version"
 
 else
     echo "Branch is up to date."
