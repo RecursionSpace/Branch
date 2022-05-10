@@ -15,6 +15,7 @@ sudo chronyd -q
 # ------------------------- Install Bash Requirements ------------------------ #
 sudo apt-get install jq -y
 sudo apt-get install unzip -y
+sudo apt-get install fastjar -y
 
 # ---------------------------- Install Python 3.10 --------------------------- #
 sudo apt install software-properties-common -y
