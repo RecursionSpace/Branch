@@ -33,7 +33,6 @@ if [ "$current_version" != "$latest_version" ]; then
     curl -H 'Authorization: token ${access_token}' \
         -H 'Accept: application/vnd.github.v3.raw' \
         --output /opt/Stem/branch_staging/"$latest_version".zip \
-        --silent \
         --location "${update_url}"
 
     # Unzip the latest version.
