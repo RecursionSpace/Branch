@@ -49,6 +49,10 @@ if [ "$current_version" != "$latest_version" ]; then
     # Unzip the latest version.
     unzip /opt/Stem/branch_staging/"$latest_version".zip -d /opt/Stem/branch_staging
 
+    rm /opt/Stem/branch_staging/"$latest_version".zip
+
+    ls /opt/Stem/branch_staging | xargs mv -t /opt/Stem/branch_staging/"$latest_version"
+
 else
     echo "Branch is up to date."
     exit 0
