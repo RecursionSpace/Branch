@@ -48,9 +48,5 @@ echo '{
 sudo adduser --disabled-password --gecos "" branch
 sudo usermod -aG sudo branch
 
-
-sudo systemctl enable branch.service
-
-
 # https://askubuntu.com/questions/193130/what-is-the-most-basic-window-manager-for-ubuntu-that-can-be-used-to-display-a-s
 sudo apt-get install ratpoison -y

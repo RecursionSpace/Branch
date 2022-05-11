@@ -75,7 +75,7 @@ Create a desktop file *branch.desktop* under `/usr/share/xsessions`
 [Desktop Entry]
 Name=Branch GUI
 Comment=Start application on boot
-Exec=/opt/Branch/gui_interface/gui.sh
+Exec=/opt/Stem/gui_interface/gui.sh
 Type=Application
 ```
 

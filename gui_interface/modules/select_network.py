@@ -126,7 +126,7 @@ class WiFiGUI(ttk.Frame):
         wifi_ssid = str(self.get_wifi_value.get())
         password_string = str(self.get_wifi_password_value.get())
 
-        print(f"Connecting to {wifi_ssid} with password {password_string}")
+        # print(f"Connecting to {wifi_ssid} with password {password_string}")
 
         profile = pywifi.Profile()
         profile.ssid = wifi_ssid  # wifi name
